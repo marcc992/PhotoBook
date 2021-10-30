@@ -25,7 +25,7 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
         GridLayoutManager(this, Utilities().getGridSpanCount(resources,  680))
     }
 
-    var totalPages = 0
+    var totalPages = 1 // todo: actualizar este parametro si existe en api
     var currentPage = 0
 
     private var loading = false
@@ -81,13 +81,12 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
 
                 if (dy > 0) {
                     if (!loading && ((totalItemCount - visibleItemCount) <= pastVisibleItems)) {
-                        showLoading()
 
                         if (++currentPage <= totalPages)
                             presenter.getPhotos(currentPage)
                         else {
                             showSnack("T: No hay mas fotos para mostrar")
-                            hideLoading()
+                            //hideLoading()
                             loading = true // Flag loading as true to avoid this step again
                         }
                     }
@@ -101,7 +100,9 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
         Log.d(TAG, "addPhotos(newPhotos.size=${newPhotos.size})")
         newPhotos.forEach { photo ->
             photoList.add(photo)
-            adapter.notifyItemInserted(photoList.size - 1)
+            binding.recyclerview.post {
+                adapter.notifyItemInserted(photoList.size - 1)
+            }
         }
     }
 
