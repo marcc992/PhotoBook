@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import es.marcmauri.photobook.R
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.ActivityPhotoGridBinding
+import es.marcmauri.photobook.features.photodetail.PhotoDetailFragment
 import es.marcmauri.photobook.features.photogrid.adapters.PhotoGridAdapter
 import es.marcmauri.photobook.features.photogrid.listeners.RecyclerPhotoGridListener
 import es.marcmauri.photobook.utils.Utilities
@@ -24,6 +25,7 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
     private val layoutManager by lazy {
         GridLayoutManager(this, Utilities().getGridSpanCount(resources,  680))
     }
+    private var photoDetailFragment: PhotoDetailFragment? = null
 
     var totalPages = 1 // todo: actualizar este parametro si existe en api
     var currentPage = 0
@@ -61,7 +63,17 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
         adapter = PhotoGridAdapter(photoList, object : RecyclerPhotoGridListener {
             override fun onPhotoItemClick(photo: String, position: Int) {
                 showSnack("Photo clicked! Position: $position")
+
                 //presenter.onPhotoItemClick(position)
+            }
+
+            override fun onPhotoItemLongClick(photo: String, position: Int) {
+                photoDetailFragment = PhotoDetailFragment(photo)
+                photoDetailFragment!!.show(supportFragmentManager, "PhotoDetailFragment")
+            }
+
+            override fun onPhotoItemLongClickReleased() {
+                photoDetailFragment?.dismiss()
             }
         })
     }

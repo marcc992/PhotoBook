@@ -1,5 +1,6 @@
 package es.marcmauri.photobook.features.photogrid.adapters
 
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -15,6 +16,9 @@ class PhotoGridAdapter(
     private val listener: RecyclerPhotoGridListener
 ) : RecyclerView.Adapter<PhotoGridAdapter.ViewHolder>() {
 
+    private val TAG = "PhotoGridAdapter"
+    private var isLongClickPressed = false
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(parent.inflate(R.layout.recycler_photo_item))
 
@@ -24,6 +28,20 @@ class PhotoGridAdapter(
         holder.itemView.setOnClickListener {
             listener.onPhotoItemClick(photos[position], position)
         }
+        holder.itemView.setOnLongClickListener {
+            isLongClickPressed = true
+            listener.onPhotoItemLongClick(photos[position], position)
+            false
+        }
+        holder.itemView.setOnTouchListener { view, motionEvent ->
+            view.onTouchEvent(motionEvent)
+            if (isLongClickPressed && !motionEvent.action.equals(MotionEvent.AXIS_PRESSURE)) {
+                isLongClickPressed = false
+                listener.onPhotoItemLongClickReleased()
+            }
+            true
+        }
+
     }
 
     override fun getItemCount() = photos.size
