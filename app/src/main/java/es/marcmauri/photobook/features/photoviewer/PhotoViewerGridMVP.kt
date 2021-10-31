@@ -1,6 +1,6 @@
 package es.marcmauri.photobook.features.photoviewer
 
-import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 
 interface PhotoViewerGridMVP {
 
@@ -10,7 +10,7 @@ interface PhotoViewerGridMVP {
         fun openPhotoInfo(photo: UnsplashPhoto)
         fun showLoading()
         fun hideLoading()
-        fun showError()
+        fun showError(message: String)
     }
 
     interface Presenter {
@@ -18,5 +18,9 @@ interface PhotoViewerGridMVP {
         fun onFragmentReady()
         fun getPhotos(page: Int)
         fun onPhotoItemClick(photo: UnsplashPhoto)
+    }
+
+    interface Model {
+        suspend fun getPhotosByPage(page: Int): List<UnsplashPhoto>
     }
 }

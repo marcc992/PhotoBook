@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import es.marcmauri.photobook.R
-import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 import es.marcmauri.photobook.features.photoviewer.view.listeners.RecyclerPhotoGridListener
 import es.marcmauri.photobook.utils.inflate
 import es.marcmauri.photobook.utils.loadByUrl

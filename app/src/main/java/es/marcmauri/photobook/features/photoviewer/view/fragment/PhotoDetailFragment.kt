@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoDetailBinding
 import es.marcmauri.photobook.features.photoviewer.PhotoViewerDetailMVP
-import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 import es.marcmauri.photobook.utils.loadByUrl
 import javax.inject.Inject
 
@@ -82,7 +82,7 @@ class PhotoDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
     override fun configureUI() {
         Log.d(TAG, "configureUI()")
         binding.ivCloseDetail.setOnClickListener {
-            presenter.onCloseButtonClick()
+            presenter.closeButtonClicked()
         }
     }
 

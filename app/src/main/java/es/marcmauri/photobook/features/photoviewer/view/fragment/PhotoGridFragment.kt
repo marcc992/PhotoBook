@@ -10,11 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
 import es.marcmauri.photobook.features.photopreview.view.fragment.PhotoPreviewFragment
 import es.marcmauri.photobook.features.photoviewer.PhotoViewerGridMVP
-import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 import es.marcmauri.photobook.features.photoviewer.view.activity.PhotoGridActivity
 import es.marcmauri.photobook.features.photoviewer.view.adapter.PhotoGridAdapter
 import es.marcmauri.photobook.features.photoviewer.view.listeners.RecyclerPhotoGridListener
@@ -25,6 +26,9 @@ import javax.inject.Inject
 private const val TAG = "D_PhotoGridFragment"
 
 class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
+
+    @Inject
+    lateinit var presenter: PhotoViewerGridMVP.Presenter
 
     private lateinit var binding: FragmentPhotoGridBinding
     private lateinit var adapter: PhotoGridAdapter
@@ -41,9 +45,6 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
     private var pastVisibleItems = 0
     private var visibleItemCount = 0
     private var totalItemCount = 0
-
-    @Inject
-    lateinit var presenter: PhotoViewerGridMVP.Presenter
 
 
     override fun onAttach(context: Context) {
@@ -151,7 +152,11 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
         loading = false
     }
 
-    override fun showError() {
-        TODO("Not yet implemented")
+    override fun showError(message: String) {
+        // Todo: Hacer esto mas bonito
+        snackBar(
+            message = message,
+            duration = Snackbar.LENGTH_INDEFINITE,
+            view = binding.rootView);
     }
 }

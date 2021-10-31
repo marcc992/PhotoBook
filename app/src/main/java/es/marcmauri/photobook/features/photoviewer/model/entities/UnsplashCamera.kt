@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photoviewer.model
+package es.marcmauri.photobook.features.photoviewer.model.entities
 
 import android.os.Parcel
 import android.os.Parcelable

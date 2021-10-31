@@ -3,7 +3,7 @@ package es.marcmauri.photobook.features.photoviewer.presenter
 import android.util.Log
 import androidx.annotation.Nullable
 import es.marcmauri.photobook.features.photoviewer.PhotoViewerDetailMVP
-import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 
 private const val TAG = "D_PhotoDetailPresenter"
 
@@ -28,7 +28,7 @@ class PhotoDetailPresenter : PhotoViewerDetailMVP.Presenter {
         view?.setAdditionalInfoSecond("Profile image: ${photo.user.profileImageUrl}")
     }
 
-    override fun onCloseButtonClick() {
+    override fun closeButtonClicked() {
         Log.d(TAG, "onCloseButtonClick()")
         view?.closeFragment()
     }
