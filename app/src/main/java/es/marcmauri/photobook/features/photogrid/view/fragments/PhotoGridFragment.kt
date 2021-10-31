@@ -1,31 +1,36 @@
-package es.marcmauri.photobook.features.photogrid
+package es.marcmauri.photobook.features.photogrid.view.fragments
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import es.marcmauri.photobook.R
 import es.marcmauri.photobook.app.PhotoBookApp
-import es.marcmauri.photobook.databinding.ActivityPhotoGridBinding
-import es.marcmauri.photobook.features.photodetail.PhotoDetailFragment
+import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
+import es.marcmauri.photobook.features.photogrid.PhotoGridMVP
 import es.marcmauri.photobook.features.photogrid.adapters.PhotoGridAdapter
 import es.marcmauri.photobook.features.photogrid.listeners.RecyclerPhotoGridListener
+import es.marcmauri.photobook.features.photogrid.view.activity.PhotoGridActivity
+import es.marcmauri.photobook.features.photopreview.view.fragments.PhotoPreviewFragment
 import es.marcmauri.photobook.utils.Utilities
 import es.marcmauri.photobook.utils.snackBar
 import javax.inject.Inject
 
-class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
-    private val TAG = "PhotoGridActivity"
-    private lateinit var binding: ActivityPhotoGridBinding
+class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
+
+    private val TAG = "PhotoGridFragment"
+    private lateinit var binding: FragmentPhotoGridBinding
     private lateinit var adapter: PhotoGridAdapter
     private var photoList: ArrayList<String> = ArrayList(0)
     private val layoutManager by lazy {
-        GridLayoutManager(this, Utilities().getGridSpanCount(resources,  680))
+        GridLayoutManager(context, Utilities().getGridSpanCount(resources, 680))
     }
-    private var photoDetailFragment: PhotoDetailFragment? = null
+    private var photoPreviewFragment: PhotoPreviewFragment? = null
 
     var totalPages = 1 // todo: actualizar este parametro si existe en api
     var currentPage = 0
@@ -38,21 +43,30 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
     @Inject
     lateinit var presenter: PhotoGridMVP.Presenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate()")
-        binding = ActivityPhotoGridBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        (application as PhotoBookApp).getComponent().inject(this)
+    override fun onAttach(context: Context) {
+        (activity?.application as PhotoBookApp).getComponent().inject(this)
+        super.onAttach(context)
+    }
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        Log.d(TAG, "onCreateView()")
+        binding = FragmentPhotoGridBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         presenter.setView(this)
-        presenter.onActivityReady(savedInstanceState)
+        presenter.onFragmentReady()
     }
 
     override fun configureUI() {
         Log.d(TAG, "configureUI()")
-        title = getString(R.string.app_name)
         setAdapter()
         setRecylcerView()
         presenter.getPhotos(0)
@@ -63,17 +77,16 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
         adapter = PhotoGridAdapter(photoList, object : RecyclerPhotoGridListener {
             override fun onPhotoItemClick(photo: String, position: Int) {
                 showSnack("Photo clicked! Position: $position")
-
-                //presenter.onPhotoItemClick(position)
+                presenter.onPhotoItemClick(photoList[position], position)
             }
 
             override fun onPhotoItemLongClick(photo: String, position: Int) {
-                photoDetailFragment = PhotoDetailFragment(photo)
-                photoDetailFragment!!.show(supportFragmentManager, "PhotoDetailFragment")
+                photoPreviewFragment = PhotoPreviewFragment(photo)
+                photoPreviewFragment!!.show(activity!!.supportFragmentManager, "PhotoPreviewFragment")
             }
 
             override fun onPhotoItemLongClickReleased() {
-                photoDetailFragment?.dismiss()
+                photoPreviewFragment?.dismiss()
             }
         })
     }
@@ -83,7 +96,7 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
         binding.recyclerview.setHasFixedSize(true)
         binding.recyclerview.itemAnimator = DefaultItemAnimator()
         binding.recyclerview.layoutManager = layoutManager
-        binding.recyclerview.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+        binding.recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
@@ -119,7 +132,8 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
     }
 
     override fun openPhotoInfo(photo: String) {
-        TODO("Not yet implemented")
+        Log.d(TAG, "openPhotoInfo(photo = $photo)")
+        (activity as PhotoGridActivity).loadFragment(PhotoDetailFragment.newInstance(photo))
     }
 
     override fun showLoading() {
@@ -135,6 +149,7 @@ class PhotoGridActivity : AppCompatActivity(), PhotoGridMVP.View {
     }
 
     override fun showSnack(text: String) {
-        snackBar(text)
+        snackBar(text, binding.rootView)
     }
+
 }

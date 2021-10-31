@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photodetail
+package es.marcmauri.photobook.features.photopreview.view.fragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import es.marcmauri.photobook.R
 import es.marcmauri.photobook.utils.loadByUrl
 
-class PhotoDetailFragment(val photoUrl: String) : DialogFragment() {
+class PhotoPreviewFragment(val photoUrl: String) : DialogFragment() {
     private val TAG = "PhotoGridDetailFragment"
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

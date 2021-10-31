@@ -16,7 +16,8 @@ interface PhotoGridMVP {
     interface Presenter {
         fun setView(view: View)
         fun onActivityReady(savedInstanceState: Bundle?)
+        fun onFragmentReady()
         fun getPhotos(page: Int)
-        fun onPhotoItemClick(position: Int)
+        fun onPhotoItemClick(photo: String, position: Int)
     }
 }
