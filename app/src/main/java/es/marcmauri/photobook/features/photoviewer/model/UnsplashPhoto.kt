@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photogrid.model
+package es.marcmauri.photobook.features.photoviewer.model
 
 import android.os.Parcel
 import android.os.Parcelable

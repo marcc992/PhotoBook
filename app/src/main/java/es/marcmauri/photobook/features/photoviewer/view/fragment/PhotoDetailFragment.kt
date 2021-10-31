@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photogrid.view.fragment
+package es.marcmauri.photobook.features.photoviewer.view.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoDetailBinding
-import es.marcmauri.photobook.features.photogrid.PhotoDetailMVP
-import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.PhotoViewerDetailMVP
+import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
 import es.marcmauri.photobook.utils.loadByUrl
 import javax.inject.Inject
 
@@ -19,14 +19,14 @@ import javax.inject.Inject
 private const val TAG = "D_PhotoDetailFragment"
 private const val ARG_PARAM1 = "photo"
 
-class PhotoDetailFragment : Fragment(), PhotoDetailMVP.View {
+class PhotoDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
     // TODO: Rename and change types of parameters
     private var photo: UnsplashPhoto? = null
 
     private lateinit var binding: FragmentPhotoDetailBinding
 
     @Inject
-    lateinit var presenter: PhotoDetailMVP.Presenter
+    lateinit var presenter: PhotoViewerDetailMVP.Presenter
 
 
     override fun onAttach(context: Context) {
@@ -129,5 +129,9 @@ class PhotoDetailFragment : Fragment(), PhotoDetailMVP.View {
     override fun hideLoading() {
         Log.d(TAG, "hideLoading()")
         binding.progressLoadingPhotoDetail.visibility = View.GONE
+    }
+
+    override fun showError() {
+        TODO("Not yet implemented")
     }
 }

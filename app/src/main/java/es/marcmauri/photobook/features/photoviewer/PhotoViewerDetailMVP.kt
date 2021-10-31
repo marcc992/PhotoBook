@@ -1,8 +1,8 @@
-package es.marcmauri.photobook.features.photogrid
+package es.marcmauri.photobook.features.photoviewer
 
-import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
 
-interface PhotoDetailMVP {
+interface PhotoViewerDetailMVP {
 
     interface View {
         fun configureUI()
@@ -15,6 +15,7 @@ interface PhotoDetailMVP {
         fun closeFragment()
         fun showLoading()
         fun hideLoading()
+        fun showError()
     }
 
     interface Presenter {

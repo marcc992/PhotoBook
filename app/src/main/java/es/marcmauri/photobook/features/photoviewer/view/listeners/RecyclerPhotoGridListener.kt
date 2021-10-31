@@ -1,6 +1,6 @@
-package es.marcmauri.photobook.features.photogrid.view.listeners
+package es.marcmauri.photobook.features.photoviewer.view.listeners
 
-import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
 
 interface RecyclerPhotoGridListener {
     fun onPhotoItemClick(photo: UnsplashPhoto, position: Int)

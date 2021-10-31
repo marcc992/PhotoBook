@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photogrid.view.activity
+package es.marcmauri.photobook.features.photoviewer.view.activity
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import es.marcmauri.photobook.R
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.ActivityPhotoGridBinding
-import es.marcmauri.photobook.features.photogrid.view.fragment.PhotoGridFragment
+import es.marcmauri.photobook.features.photoviewer.view.fragment.PhotoGridFragment
 
 private const val TAG = "D_PhotoGridActivity"
 

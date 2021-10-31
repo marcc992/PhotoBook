@@ -1,7 +1,7 @@
 package es.marcmauri.photobook.app
 
 import android.app.Application
-import es.marcmauri.photobook.features.photogrid.PhotoGridModule
+import es.marcmauri.photobook.features.photoviewer.PhotoViewerModule
 
 class PhotoBookApp : Application() {
     private lateinit var component: ApplicationComponent
@@ -10,7 +10,7 @@ class PhotoBookApp : Application() {
         super.onCreate()
 
         component = DaggerApplicationComponent.builder()
-            .photoGridModule(PhotoGridModule())
+            .photoViewerModule(PhotoViewerModule())
             .build()
     }
 

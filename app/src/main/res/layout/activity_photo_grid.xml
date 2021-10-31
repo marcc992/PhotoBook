@@ -4,7 +4,7 @@
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.photogrid.view.activity.PhotoGridActivity">
+    tools:context=".features.photoviewer.view.activity.PhotoGridActivity">
 
     <FrameLayout
         android:id="@+id/fragment_container"

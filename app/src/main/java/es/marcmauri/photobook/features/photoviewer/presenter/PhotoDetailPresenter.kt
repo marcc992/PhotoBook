@@ -1,19 +1,19 @@
-package es.marcmauri.photobook.features.photogrid.presenter
+package es.marcmauri.photobook.features.photoviewer.presenter
 
 import android.util.Log
 import androidx.annotation.Nullable
-import es.marcmauri.photobook.features.photogrid.PhotoDetailMVP
-import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.PhotoViewerDetailMVP
+import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
 
 private const val TAG = "D_PhotoDetailPresenter"
 
-class PhotoDetailPresenter : PhotoDetailMVP.Presenter {
+class PhotoDetailPresenter : PhotoViewerDetailMVP.Presenter {
 
     @Nullable
-    private var view: PhotoDetailMVP.View? = null
+    private var view: PhotoViewerDetailMVP.View? = null
 
 
-    override fun setView(view: PhotoDetailMVP.View) {
+    override fun setView(view: PhotoViewerDetailMVP.View) {
         Log.d(TAG, "setView(view)")
         this.view = view
     }

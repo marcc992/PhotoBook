@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photogrid.view.fragment
+package es.marcmauri.photobook.features.photoviewer.view.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -12,19 +12,19 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
-import es.marcmauri.photobook.features.photogrid.PhotoGridMVP
-import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
-import es.marcmauri.photobook.features.photogrid.view.activity.PhotoGridActivity
-import es.marcmauri.photobook.features.photogrid.view.adapter.PhotoGridAdapter
-import es.marcmauri.photobook.features.photogrid.view.listeners.RecyclerPhotoGridListener
 import es.marcmauri.photobook.features.photopreview.view.fragment.PhotoPreviewFragment
+import es.marcmauri.photobook.features.photoviewer.PhotoViewerGridMVP
+import es.marcmauri.photobook.features.photoviewer.model.UnsplashPhoto
+import es.marcmauri.photobook.features.photoviewer.view.activity.PhotoGridActivity
+import es.marcmauri.photobook.features.photoviewer.view.adapter.PhotoGridAdapter
+import es.marcmauri.photobook.features.photoviewer.view.listeners.RecyclerPhotoGridListener
 import es.marcmauri.photobook.utils.Utilities
 import es.marcmauri.photobook.utils.snackBar
 import javax.inject.Inject
 
 private const val TAG = "D_PhotoGridFragment"
 
-class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
+class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
 
     private lateinit var binding: FragmentPhotoGridBinding
     private lateinit var adapter: PhotoGridAdapter
@@ -43,7 +43,7 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
     private var totalItemCount = 0
 
     @Inject
-    lateinit var presenter: PhotoGridMVP.Presenter
+    lateinit var presenter: PhotoViewerGridMVP.Presenter
 
 
     override fun onAttach(context: Context) {
@@ -149,5 +149,9 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
         Log.d(TAG, "hideLoading()")
         binding.progressBarLoadingPhotos.visibility = View.GONE
         loading = false
+    }
+
+    override fun showError() {
+        TODO("Not yet implemented")
     }
 }
