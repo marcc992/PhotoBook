@@ -8,7 +8,7 @@ class PhotoBookApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        
+
         component = DaggerApplicationComponent.builder()
             .photoGridModule(PhotoGridModule())
             .build()

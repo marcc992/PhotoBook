@@ -1,7 +1,5 @@
 package es.marcmauri.photobook.features.photogrid
 
-import android.os.Bundle
-
 interface PhotoGridMVP {
 
     interface View {

@@ -23,6 +23,7 @@ class PhotoDetailFragment : Fragment(), PhotoDetailMVP.View {
     private var param1: String? = null
 
     private lateinit var binding: FragmentPhotoDetailBinding
+
     @Inject
     lateinit var presenter: PhotoDetailMVP.Presenter
 

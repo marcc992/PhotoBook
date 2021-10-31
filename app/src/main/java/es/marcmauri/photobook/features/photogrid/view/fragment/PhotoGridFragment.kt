@@ -3,19 +3,19 @@ package es.marcmauri.photobook.features.photogrid.view.fragment
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
 import es.marcmauri.photobook.features.photogrid.PhotoGridMVP
+import es.marcmauri.photobook.features.photogrid.view.activity.PhotoGridActivity
 import es.marcmauri.photobook.features.photogrid.view.adapter.PhotoGridAdapter
 import es.marcmauri.photobook.features.photogrid.view.listeners.RecyclerPhotoGridListener
-import es.marcmauri.photobook.features.photogrid.view.activity.PhotoGridActivity
 import es.marcmauri.photobook.features.photopreview.view.fragment.PhotoPreviewFragment
 import es.marcmauri.photobook.utils.Utilities
 import es.marcmauri.photobook.utils.snackBar
@@ -83,7 +83,10 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
 
             override fun onPhotoItemLongClick(photo: String, position: Int) {
                 photoPreviewFragment = PhotoPreviewFragment(photo)
-                photoPreviewFragment!!.show(activity!!.supportFragmentManager, "PhotoPreviewFragment")
+                photoPreviewFragment!!.show(
+                    activity!!.supportFragmentManager,
+                    "PhotoPreviewFragment"
+                )
             }
 
             override fun onPhotoItemLongClickReleased() {
