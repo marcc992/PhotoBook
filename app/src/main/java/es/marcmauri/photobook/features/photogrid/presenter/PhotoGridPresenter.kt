@@ -1,7 +1,5 @@
 package es.marcmauri.photobook.features.photogrid.presenter
 
-import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import androidx.annotation.Nullable
 import es.marcmauri.photobook.features.photogrid.PhotoGridMVP
@@ -12,17 +10,10 @@ class PhotoGridPresenter : PhotoGridMVP.Presenter {
 
     @Nullable
     private var view: PhotoGridMVP.View? = null
-    @Nullable
-    private var context: Context? = null
 
     override fun setView(view: PhotoGridMVP.View) {
         Log.d(TAG, "setView(view)")
         this.view = view
-    }
-
-    override fun onActivityReady(savedInstanceState: Bundle?) {
-        Log.d(TAG, "onActivityReady(savedInstanceState?)")
-        view?.configureUI()
     }
 
     override fun onFragmentReady() {
