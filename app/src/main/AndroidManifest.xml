@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.marcmauri.photobook">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".app.PhotoBookApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PhotoBook">
         <activity
-            android:name=".MainActivity"
+            android:name=".features.photogrid.view.activity.PhotoGridActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
