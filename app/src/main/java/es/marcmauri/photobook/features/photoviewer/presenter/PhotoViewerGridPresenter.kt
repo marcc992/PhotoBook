@@ -8,7 +8,7 @@ import kotlinx.coroutines.*
 
 private const val TAG = "D_PhotoGridPresenter"
 
-class PhotoGridPresenter(val model: PhotoViewerGridMVP.Model) : PhotoViewerGridMVP.Presenter {
+class PhotoViewerGridPresenter(val model: PhotoViewerGridMVP.Model) : PhotoViewerGridMVP.Presenter {
 
     @Nullable
     private var view: PhotoViewerGridMVP.View? = null

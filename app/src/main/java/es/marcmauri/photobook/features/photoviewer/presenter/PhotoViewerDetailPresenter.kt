@@ -7,7 +7,7 @@ import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 
 private const val TAG = "D_PhotoDetailPresenter"
 
-class PhotoDetailPresenter : PhotoViewerDetailMVP.Presenter {
+class PhotoViewerDetailPresenter : PhotoViewerDetailMVP.Presenter {
 
     @Nullable
     private var view: PhotoViewerDetailMVP.View? = null

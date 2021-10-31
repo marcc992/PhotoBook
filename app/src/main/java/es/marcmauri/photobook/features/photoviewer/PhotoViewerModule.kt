@@ -3,8 +3,8 @@ package es.marcmauri.photobook.features.photoviewer
 import dagger.Module
 import dagger.Provides
 import es.marcmauri.photobook.features.photoviewer.model.PhotoViewerGridModel
-import es.marcmauri.photobook.features.photoviewer.presenter.PhotoDetailPresenter
-import es.marcmauri.photobook.features.photoviewer.presenter.PhotoGridPresenter
+import es.marcmauri.photobook.features.photoviewer.presenter.PhotoViewerDetailPresenter
+import es.marcmauri.photobook.features.photoviewer.presenter.PhotoViewerGridPresenter
 import es.marcmauri.photobook.features.photoviewer.repository.UnsplashRepository
 import es.marcmauri.photobook.features.photoviewer.repository.impl.DummyUnsplashRepository
 
@@ -13,7 +13,7 @@ class PhotoViewerModule {
 
     @Provides
     fun providePhotoViewerGridPresenter(model: PhotoViewerGridMVP.Model): PhotoViewerGridMVP.Presenter =
-        PhotoGridPresenter(model)
+        PhotoViewerGridPresenter(model)
 
     @Provides
     fun providePhotoViewerGridModel(repository: UnsplashRepository): PhotoViewerGridMVP.Model =
@@ -23,5 +23,5 @@ class PhotoViewerModule {
     fun provideUnsplashRepository(): UnsplashRepository = DummyUnsplashRepository()
 
     @Provides
-    fun providePhotoViewerDetailPresenter(): PhotoViewerDetailMVP.Presenter = PhotoDetailPresenter()
+    fun providePhotoViewerDetailPresenter(): PhotoViewerDetailMVP.Presenter = PhotoViewerDetailPresenter()
 }
