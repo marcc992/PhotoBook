@@ -11,12 +11,13 @@ import es.marcmauri.photobook.features.photogrid.view.listeners.RecyclerPhotoGri
 import es.marcmauri.photobook.utils.inflate
 import es.marcmauri.photobook.utils.loadByUrl
 
+private const val TAG = "PhotoGridAdapter"
+
 class PhotoGridAdapter(
     private val photos: List<String>,
     private val listener: RecyclerPhotoGridListener
 ) : RecyclerView.Adapter<PhotoGridAdapter.ViewHolder>() {
 
-    private val TAG = "PhotoGridAdapter"
     private var isLongClickPressed = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

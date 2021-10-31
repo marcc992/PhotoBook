@@ -5,8 +5,9 @@ import androidx.annotation.Nullable
 import es.marcmauri.photobook.features.photogrid.PhotoGridMVP
 import kotlinx.coroutines.*
 
+private const val TAG = "PhotoGridPresenter"
+
 class PhotoGridPresenter : PhotoGridMVP.Presenter {
-    private val TAG = "PhotoGridPresenter"
 
     @Nullable
     private var view: PhotoGridMVP.View? = null

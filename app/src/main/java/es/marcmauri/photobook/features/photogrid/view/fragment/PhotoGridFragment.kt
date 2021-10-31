@@ -21,9 +21,10 @@ import es.marcmauri.photobook.utils.Utilities
 import es.marcmauri.photobook.utils.snackBar
 import javax.inject.Inject
 
+private const val TAG = "PhotoGridFragment"
+
 class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
 
-    private val TAG = "PhotoGridFragment"
     private lateinit var binding: FragmentPhotoGridBinding
     private lateinit var adapter: PhotoGridAdapter
     private var photoList: ArrayList<String> = ArrayList(0)
