@@ -1,5 +1,7 @@
 package es.marcmauri.photobook.features.photogrid
 
+import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
+
 interface PhotoDetailMVP {
 
     interface View {
@@ -17,7 +19,7 @@ interface PhotoDetailMVP {
 
     interface Presenter {
         fun setView(view: View)
-        fun onFragmentReady(photo: String)
+        fun onFragmentReady(photo: UnsplashPhoto)
         fun onCloseButtonClick()
     }
 }

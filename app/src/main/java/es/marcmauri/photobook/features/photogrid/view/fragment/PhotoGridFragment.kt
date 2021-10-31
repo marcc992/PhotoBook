@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
 import es.marcmauri.photobook.features.photogrid.PhotoGridMVP
+import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
 import es.marcmauri.photobook.features.photogrid.view.activity.PhotoGridActivity
 import es.marcmauri.photobook.features.photogrid.view.adapter.PhotoGridAdapter
 import es.marcmauri.photobook.features.photogrid.view.listeners.RecyclerPhotoGridListener
@@ -27,7 +28,7 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
 
     private lateinit var binding: FragmentPhotoGridBinding
     private lateinit var adapter: PhotoGridAdapter
-    private var photoList: ArrayList<String> = ArrayList(0)
+    private var photoList: ArrayList<UnsplashPhoto> = ArrayList(0)
     private val layoutManager by lazy {
         GridLayoutManager(context, Utilities().getGridSpanCount(resources, 680))
     }
@@ -76,13 +77,12 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
     private fun setAdapter() {
         Log.d(TAG, "setAdapter()")
         adapter = PhotoGridAdapter(photoList, object : RecyclerPhotoGridListener {
-            override fun onPhotoItemClick(photo: String, position: Int) {
-                showSnack("Photo clicked! Position: $position")
-                presenter.onPhotoItemClick(photoList[position], position)
+            override fun onPhotoItemClick(photo: UnsplashPhoto, position: Int) {
+                presenter.onPhotoItemClick(photo)
             }
 
-            override fun onPhotoItemLongClick(photo: String, position: Int) {
-                photoPreviewFragment = PhotoPreviewFragment(photo)
+            override fun onPhotoItemLongClick(photo: UnsplashPhoto, position: Int) {
+                photoPreviewFragment = PhotoPreviewFragment(photo.smallUrl)
                 photoPreviewFragment!!.show(
                     activity!!.supportFragmentManager,
                     "PhotoPreviewFragment"
@@ -114,8 +114,7 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
                         if (++currentPage <= totalPages)
                             presenter.getPhotos(currentPage)
                         else {
-                            showSnack("T: No hay mas fotos para mostrar")
-                            //hideLoading()
+                            snackBar("T: No hay mas fotos para mostrar", binding.rootView)
                             loading = true // Flag loading as true to avoid this step again
                         }
                     }
@@ -125,7 +124,7 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
         binding.recyclerview.adapter = adapter
     }
 
-    override fun addPhotos(newPhotos: List<String>) {
+    override fun addPhotos(newPhotos: List<UnsplashPhoto>) {
         Log.d(TAG, "addPhotos(newPhotos.size=${newPhotos.size})")
         newPhotos.forEach { photo ->
             photoList.add(photo)
@@ -135,8 +134,8 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
         }
     }
 
-    override fun openPhotoInfo(photo: String) {
-        Log.d(TAG, "openPhotoInfo(photo = $photo)")
+    override fun openPhotoInfo(photo: UnsplashPhoto) {
+        Log.d(TAG, "openPhotoInfo(photo = ${photo.id})")
         (activity as PhotoGridActivity).loadFragment(PhotoDetailFragment.newInstance(photo))
     }
 
@@ -151,9 +150,4 @@ class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
         binding.progressBarLoadingPhotos.visibility = View.GONE
         loading = false
     }
-
-    override fun showSnack(text: String) {
-        snackBar(text, binding.rootView)
-    }
-
 }

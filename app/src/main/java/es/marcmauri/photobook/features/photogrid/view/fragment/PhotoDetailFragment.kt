@@ -10,17 +10,18 @@ import androidx.fragment.app.Fragment
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoDetailBinding
 import es.marcmauri.photobook.features.photogrid.PhotoDetailMVP
+import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
 import es.marcmauri.photobook.utils.loadByUrl
 import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val TAG = "D_PhotoDetailFragment"
-private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM1 = "photo"
 
 class PhotoDetailFragment : Fragment(), PhotoDetailMVP.View {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
+    private var photo: UnsplashPhoto? = null
 
     private lateinit var binding: FragmentPhotoDetailBinding
 
@@ -36,7 +37,7 @@ class PhotoDetailFragment : Fragment(), PhotoDetailMVP.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            photo = it.getParcelable(ARG_PARAM1)
         }
     }
 
@@ -54,8 +55,8 @@ class PhotoDetailFragment : Fragment(), PhotoDetailMVP.View {
         Log.d(TAG, "onViewCreated(...)")
         super.onViewCreated(view, savedInstanceState)
         presenter.setView(this)
-        param1?.let { photo ->
-            Log.d(TAG, "onViewCreated() -> param1.let -> param1 = $param1")
+        photo?.let { photo ->
+            Log.d(TAG, "onViewCreated() -> photo ID = ${photo.id}")
             presenter.onFragmentReady(photo)
         }
     }
@@ -70,10 +71,10 @@ class PhotoDetailFragment : Fragment(), PhotoDetailMVP.View {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String) =
+        fun newInstance(photo: UnsplashPhoto) =
             PhotoDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
+                    putParcelable(ARG_PARAM1, photo)
                 }
             }
     }

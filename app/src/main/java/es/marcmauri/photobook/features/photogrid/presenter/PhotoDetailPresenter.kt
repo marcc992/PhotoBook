@@ -3,6 +3,7 @@ package es.marcmauri.photobook.features.photogrid.presenter
 import android.util.Log
 import androidx.annotation.Nullable
 import es.marcmauri.photobook.features.photogrid.PhotoDetailMVP
+import es.marcmauri.photobook.features.photogrid.model.UnsplashPhoto
 
 private const val TAG = "D_PhotoDetailPresenter"
 
@@ -17,14 +18,14 @@ class PhotoDetailPresenter : PhotoDetailMVP.Presenter {
         this.view = view
     }
 
-    override fun onFragmentReady(photo: String) {
+    override fun onFragmentReady(photo: UnsplashPhoto) {
         Log.d(TAG, "onFragmentReady(photo = $photo)")
         view?.configureUI()
-        view?.setImage(photo)
-        view?.setTitle(photo)
-        view?.setAuthor(photo)
-        view?.setAdditionalInfoFirst(photo)
-        view?.setAdditionalInfoSecond(photo)
+        view?.setImage(photo.regularUrl)
+        photo.description?.let { view?.setTitle(it) }
+        view?.setAuthor(photo.user.name)
+        view?.setAdditionalInfoFirst("@${photo.user.instagram}")
+        view?.setAdditionalInfoSecond("Profile image: ${photo.user.profileImageUrl}")
     }
 
     override fun onCloseButtonClick() {
