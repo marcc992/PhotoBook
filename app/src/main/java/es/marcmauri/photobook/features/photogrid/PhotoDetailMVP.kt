@@ -5,6 +5,7 @@ import android.os.Bundle
 interface PhotoDetailMVP {
 
     interface View {
+        fun configureUI()
         fun setImage(url: String)
         fun setTitle(title: String)
         fun setAuthor(author: String)

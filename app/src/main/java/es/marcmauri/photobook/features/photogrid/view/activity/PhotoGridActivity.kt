@@ -10,7 +10,7 @@ import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.ActivityPhotoGridBinding
 import es.marcmauri.photobook.features.photogrid.view.fragment.PhotoGridFragment
 
-private const val TAG = "PhotoGridActivity"
+private const val TAG = "D_PhotoGridActivity"
 
 class PhotoGridActivity : AppCompatActivity() {
 

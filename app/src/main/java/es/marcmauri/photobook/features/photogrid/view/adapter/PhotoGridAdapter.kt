@@ -11,7 +11,7 @@ import es.marcmauri.photobook.features.photogrid.view.listeners.RecyclerPhotoGri
 import es.marcmauri.photobook.utils.inflate
 import es.marcmauri.photobook.utils.loadByUrl
 
-private const val TAG = "PhotoGridAdapter"
+private const val TAG = "D_PhotoGridAdapter"
 
 class PhotoGridAdapter(
     private val photos: List<String>,

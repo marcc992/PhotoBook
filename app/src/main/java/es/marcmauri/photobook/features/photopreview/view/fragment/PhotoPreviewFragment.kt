@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import es.marcmauri.photobook.R
 import es.marcmauri.photobook.utils.loadByUrl
 
-private const val TAG = "PhotoGridDetailFragment"
+private const val TAG = "D_PhotoGridDetailFragment"
 
 class PhotoPreviewFragment(val photoUrl: String) : DialogFragment() {
 

@@ -1,24 +1,36 @@
 package es.marcmauri.photobook.features.photogrid.view.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoDetailBinding
+import es.marcmauri.photobook.features.photogrid.PhotoDetailMVP
 import es.marcmauri.photobook.utils.loadByUrl
+import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val TAG = "PhotoDetailFragment"
+private const val TAG = "D_PhotoDetailFragment"
 private const val ARG_PARAM1 = "param1"
 
-class PhotoDetailFragment : Fragment() {
+class PhotoDetailFragment : Fragment(), PhotoDetailMVP.View {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
 
     private lateinit var binding: FragmentPhotoDetailBinding
+    @Inject
+    lateinit var presenter: PhotoDetailMVP.Presenter
+
+
+    override fun onAttach(context: Context) {
+        (activity?.application as PhotoBookApp).getComponent().inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +52,10 @@ class PhotoDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d(TAG, "onViewCreated(...)")
         super.onViewCreated(view, savedInstanceState)
+        presenter.setView(this)
         param1?.let { photo ->
-            binding.ivPhotoDetail.loadByUrl(photo)
+            Log.d(TAG, "onViewCreated() -> param1.let -> param1 = $param1")
+            presenter.onFragmentReady(photo)
         }
     }
 
@@ -61,5 +75,57 @@ class PhotoDetailFragment : Fragment() {
                     putString(ARG_PARAM1, param1)
                 }
             }
+    }
+
+    override fun configureUI() {
+        Log.d(TAG, "configureUI()")
+        binding.ivCloseDetail.setOnClickListener {
+            presenter.onCloseButtonClick()
+        }
+    }
+
+    override fun setImage(url: String) {
+        Log.d(TAG, "setImage(url = $url)")
+        binding.ivPhotoDetail.loadByUrl(url)
+    }
+
+    override fun setTitle(title: String) {
+        Log.d(TAG, "setTitle(title = $title)")
+        binding.tvPhotoDetailTitle.text = title
+    }
+
+    override fun setAuthor(author: String) {
+        Log.d(TAG, "setAuthor(author = $author)")
+        binding.tvPhotoDetailAuthor.text = author
+    }
+
+    override fun setDate(date: String) {
+        Log.d(TAG, "setDate(date = $date)")
+        binding.tvPhotoDetailDate.text = date
+    }
+
+    override fun setAdditionalInfoFirst(text: String) {
+        Log.d(TAG, "setAdditionalInfoFirst(text = $text)")
+        binding.tvPhotoDetailInfoFirst.text = text
+    }
+
+    override fun setAdditionalInfoSecond(text: String) {
+        Log.d(TAG, "setAdditionalInfoSecond(text = $text)")
+        binding.tvPhotoDetailInfoSecond.text = text
+    }
+
+    override fun closeFragment() {
+        Log.d(TAG, "closeFragment()")
+        activity?.onBackPressed()
+    }
+
+    override fun showLoading() {
+        Log.d(TAG, "showLoading()")
+        binding.progressLoadingPhotoDetail.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        Log.d(TAG, "hideLoading()")
+        binding.progressLoadingPhotoDetail.visibility = View.GONE
     }
 }

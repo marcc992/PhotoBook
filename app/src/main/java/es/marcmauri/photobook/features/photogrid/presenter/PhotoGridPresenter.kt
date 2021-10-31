@@ -5,7 +5,7 @@ import androidx.annotation.Nullable
 import es.marcmauri.photobook.features.photogrid.PhotoGridMVP
 import kotlinx.coroutines.*
 
-private const val TAG = "PhotoGridPresenter"
+private const val TAG = "D_PhotoGridPresenter"
 
 class PhotoGridPresenter : PhotoGridMVP.Presenter {
 

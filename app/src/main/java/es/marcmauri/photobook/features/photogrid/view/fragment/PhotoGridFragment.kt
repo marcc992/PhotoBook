@@ -21,7 +21,7 @@ import es.marcmauri.photobook.utils.Utilities
 import es.marcmauri.photobook.utils.snackBar
 import javax.inject.Inject
 
-private const val TAG = "PhotoGridFragment"
+private const val TAG = "D_PhotoGridFragment"
 
 class PhotoGridFragment : Fragment(), PhotoGridMVP.View {
 
