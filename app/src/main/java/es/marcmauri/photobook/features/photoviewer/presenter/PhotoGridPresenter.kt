@@ -36,7 +36,7 @@ class PhotoGridPresenter(val model: PhotoViewerGridMVP.Model) : PhotoViewerGridM
             val newPhotos = model.getPhotosByPage(page)
 
             withContext(Dispatchers.Main) {
-                view?.let {  v ->
+                view?.let { v ->
                     if (newPhotos.isNullOrEmpty()) {
                         v.showError("T: No se han encontrado (mas) fotos")
                     } else {

@@ -1,6 +1,7 @@
-package es.marcmauri.photobook.features.photoviewer.model.entities
+package es.marcmauri.photobook.features.photoviewer.model
 
 import es.marcmauri.photobook.features.photoviewer.PhotoViewerGridMVP
+import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 import es.marcmauri.photobook.features.photoviewer.repository.UnsplashRepository
 
 class PhotoViewerGridModel(val repository: UnsplashRepository) : PhotoViewerGridMVP.Model {

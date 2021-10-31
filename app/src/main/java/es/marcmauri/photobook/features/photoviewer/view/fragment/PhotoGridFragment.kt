@@ -157,6 +157,7 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
         snackBar(
             message = message,
             duration = Snackbar.LENGTH_INDEFINITE,
-            view = binding.rootView);
+            view = binding.rootView
+        );
     }
 }

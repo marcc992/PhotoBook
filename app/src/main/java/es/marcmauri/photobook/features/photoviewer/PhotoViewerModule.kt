@@ -2,7 +2,7 @@ package es.marcmauri.photobook.features.photoviewer
 
 import dagger.Module
 import dagger.Provides
-import es.marcmauri.photobook.features.photoviewer.model.entities.PhotoViewerGridModel
+import es.marcmauri.photobook.features.photoviewer.model.PhotoViewerGridModel
 import es.marcmauri.photobook.features.photoviewer.presenter.PhotoDetailPresenter
 import es.marcmauri.photobook.features.photoviewer.presenter.PhotoGridPresenter
 import es.marcmauri.photobook.features.photoviewer.repository.UnsplashRepository
