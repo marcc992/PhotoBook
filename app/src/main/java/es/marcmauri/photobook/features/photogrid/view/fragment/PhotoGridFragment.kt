@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photogrid.view.fragments
+package es.marcmauri.photobook.features.photogrid.view.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
 import es.marcmauri.photobook.features.photogrid.PhotoGridMVP
-import es.marcmauri.photobook.features.photogrid.adapters.PhotoGridAdapter
-import es.marcmauri.photobook.features.photogrid.listeners.RecyclerPhotoGridListener
+import es.marcmauri.photobook.features.photogrid.view.adapter.PhotoGridAdapter
+import es.marcmauri.photobook.features.photogrid.view.listeners.RecyclerPhotoGridListener
 import es.marcmauri.photobook.features.photogrid.view.activity.PhotoGridActivity
-import es.marcmauri.photobook.features.photopreview.view.fragments.PhotoPreviewFragment
+import es.marcmauri.photobook.features.photopreview.view.fragment.PhotoPreviewFragment
 import es.marcmauri.photobook.utils.Utilities
 import es.marcmauri.photobook.utils.snackBar
 import javax.inject.Inject

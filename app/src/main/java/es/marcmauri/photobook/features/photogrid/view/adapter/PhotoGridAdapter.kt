@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photogrid.adapters
+package es.marcmauri.photobook.features.photogrid.view.adapter
 
 import android.view.MotionEvent
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import es.marcmauri.photobook.R
-import es.marcmauri.photobook.features.photogrid.listeners.RecyclerPhotoGridListener
+import es.marcmauri.photobook.features.photogrid.view.listeners.RecyclerPhotoGridListener
 import es.marcmauri.photobook.utils.inflate
 import es.marcmauri.photobook.utils.loadByUrl
 

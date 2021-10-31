@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photogrid.listeners
+package es.marcmauri.photobook.features.photogrid.view.listeners
 
 interface RecyclerPhotoGridListener {
     fun onPhotoItemClick(photo: String, position: Int)

@@ -1,4 +1,4 @@
-package es.marcmauri.photobook.features.photopreview.view.fragments
+package es.marcmauri.photobook.features.photopreview.view.fragment
 
 import android.app.Dialog
 import android.os.Bundle

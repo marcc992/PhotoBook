@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import es.marcmauri.photobook.R
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.ActivityPhotoGridBinding
-import es.marcmauri.photobook.features.photogrid.view.fragments.PhotoGridFragment
+import es.marcmauri.photobook.features.photogrid.view.fragment.PhotoGridFragment
 
 class PhotoGridActivity : AppCompatActivity() {
 
