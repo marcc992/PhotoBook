@@ -15,11 +15,6 @@ import es.marcmauri.photobook.utils.loadByUrl
 private const val TAG = "PhotoDetailFragment"
 private const val ARG_PARAM1 = "param1"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PhotoDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PhotoDetailFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -44,6 +39,7 @@ class PhotoDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d(TAG, "onViewCreated(...)")
         super.onViewCreated(view, savedInstanceState)
         param1?.let { photo ->
             binding.ivPhotoDetail.loadByUrl(photo)
