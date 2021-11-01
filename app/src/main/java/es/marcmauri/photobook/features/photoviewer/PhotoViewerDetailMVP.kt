@@ -1,5 +1,6 @@
 package es.marcmauri.photobook.features.photoviewer
 
+import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashCamera
 import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 import java.util.*
 
@@ -12,8 +13,9 @@ interface PhotoViewerDetailMVP {
         fun setAuthorName(name: String)
         fun setAuthorInstagram(instagram: String?)
         fun setPhotoDate(date: Date)
-        fun setAdditionalInfoFirst(text: String)
-        fun setAdditionalInfoSecond(text: String)
+        fun setCameraMake(make: String)
+        fun setCameraModel(model: String)
+        fun setCameraName(name: String)
         fun closeFragment()
         fun showLoading()
         fun hideLoading()
@@ -23,6 +25,11 @@ interface PhotoViewerDetailMVP {
     interface Presenter {
         fun setView(view: View)
         fun onFragmentReady(photo: UnsplashPhoto)
+        fun getPhotoDetails(photoId: String)
         fun closeButtonClicked()
+    }
+
+    interface Model {
+        suspend fun getCameraDetails(photoId: String): UnsplashCamera?
     }
 }

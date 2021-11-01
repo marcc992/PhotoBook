@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import es.marcmauri.photobook.R
 import es.marcmauri.photobook.app.PhotoBookApp
@@ -18,25 +19,28 @@ import es.marcmauri.photobook.utils.snackBar
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
-import androidx.appcompat.app.AppCompatActivity
 
-
-
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val TAG = "D_PhotoDetailFragment"
-private const val ARG_PARAM1 = "photo"
+private const val ARG_PHOTO = "photo"
 
 class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
-    // TODO: Rename and change types of parameters
-    private var photo: UnsplashPhoto? = null
 
+    private var photo: UnsplashPhoto? = null
     private lateinit var binding: FragmentPhotoDetailBinding
 
     @Inject
     lateinit var presenter: PhotoViewerDetailMVP.Presenter
 
+
+    companion object {
+        @JvmStatic
+        fun newInstance(photo: UnsplashPhoto) =
+            PhotoViewerDetailFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(ARG_PHOTO, photo)
+                }
+            }
+    }
 
     override fun onAttach(context: Context) {
         (activity?.application as PhotoBookApp).getComponent().inject(this)
@@ -46,7 +50,7 @@ class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            photo = it.getParcelable(ARG_PARAM1)
+            photo = it.getParcelable(ARG_PHOTO)
         }
     }
 
@@ -70,28 +74,17 @@ class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @return A new instance of fragment PhotoViewerDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(photo: UnsplashPhoto) =
-            PhotoViewerDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(ARG_PARAM1, photo)
-                }
-            }
-    }
-
     override fun configureUI() {
         Log.d(TAG, "configureUI()")
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
+        setCloseBehavior()
 
+        photo?.let {
+            presenter.getPhotoDetails(it.id)
+        }
+    }
+
+    private fun setCloseBehavior() {
         binding.ivCloseDetail.setOnClickListener {
             presenter.closeButtonClicked()
         }
@@ -106,7 +99,6 @@ class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
         Log.d(TAG, "setAuthorImage(url = $url)")
 
         if (url.isNullOrEmpty()) {
-            // Todo: load a nice user photo
             binding.ivUserPhoto.loadByResource(R.drawable.ic_profile_photo)
         } else {
             binding.ivUserPhoto.loadByUrl(url)
@@ -133,18 +125,26 @@ class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
     override fun setPhotoDate(date: Date) {
         Log.d(TAG, "setDate(date = $date)")
         val format = SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE)
-        val textDate = resources.getString(R.string.fragment_photoviewer_detail_photo_date, format.format(date))
+        val textDate = resources.getString(
+            R.string.fragment_photoviewer_detail_photo_date,
+            format.format(date)
+        )
         binding.tvPhotoDetailDate.text = textDate
     }
 
-    override fun setAdditionalInfoFirst(text: String) {
-        Log.d(TAG, "setAdditionalInfoFirst(text = $text)")
-        binding.tvPhotoDetailInfoFirst.text = text
+    override fun setCameraMake(make: String) {
+        //TODO
+        binding.tvPhotoDetailInfoFirst.text = make
     }
 
-    override fun setAdditionalInfoSecond(text: String) {
-        Log.d(TAG, "setAdditionalInfoSecond(text = $text)")
-        binding.tvPhotoDetailInfoSecond.text = text
+    override fun setCameraModel(model: String) {
+        // TODO
+        binding.tvPhotoDetailInfoSecond.text = model
+    }
+
+    override fun setCameraName(name: String) {
+        // todo
+        showError("Aqui va el nombre: $name")
     }
 
     override fun closeFragment() {

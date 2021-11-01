@@ -7,7 +7,7 @@ interface PhotoViewerGridMVP {
     interface View {
         fun configureUI()
         fun addPhotos(newPhotos: List<UnsplashPhoto>)
-        fun openPhotoInfo(photo: UnsplashPhoto)
+        fun openPhotoDetails(photo: UnsplashPhoto)
         fun showLoading()
         fun hideLoading()
         fun showNoMorePhotos()
