@@ -5,7 +5,7 @@ import es.marcmauri.photobook.http.unsplash.UnsplashAPI
 
 class LiveUnsplashRepository(val unsplashApi: UnsplashAPI) : UnsplashRepository {
 
-    // Todo: controlar errores
     override suspend fun getPhotosByPage(page: Int) = unsplashApi.getPhotosByPage(page)
 
+    override suspend fun getPhotoDetail(photoId: String) = unsplashApi.getPhotoDetails(photoId)
 }

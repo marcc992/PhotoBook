@@ -139,7 +139,7 @@ class PhotoViewerGridFragment : Fragment(), PhotoViewerGridMVP.View {
         }
     }
 
-    override fun openPhotoInfo(photo: UnsplashPhoto) {
+    override fun openPhotoDetails(photo: UnsplashPhoto) {
         Log.d(TAG, "openPhotoInfo(photo = ${photo.id})")
         (activity as PhotoGridActivity).loadFragment(PhotoViewerDetailFragment.newInstance(photo))
     }
@@ -157,6 +157,7 @@ class PhotoViewerGridFragment : Fragment(), PhotoViewerGridMVP.View {
     }
 
     override fun showNoMorePhotos() {
+        Log.d(TAG, "showNoMorePhotos()")
         hasMorePhotos = false
         snackBar(
             message = getString(R.string.text_error_no_more_photos),
@@ -165,6 +166,7 @@ class PhotoViewerGridFragment : Fragment(), PhotoViewerGridMVP.View {
     }
 
     override fun showError(message: String?) {
+        Log.d(TAG, "showError(message= $message )")
         --currentPage
         snackBar(
             message = message ?: getString(R.string.text_error_generic),

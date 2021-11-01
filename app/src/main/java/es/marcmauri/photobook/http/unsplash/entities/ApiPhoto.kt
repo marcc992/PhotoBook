@@ -12,6 +12,7 @@ data class ApiPhoto(
     @SerializedName("blur_hash") val blur_hash: String,
     @SerializedName("description") val description: String,
     @SerializedName("alt_description") val alt_description: String,
+    @SerializedName("exif") val exif : ApiExif,
     @SerializedName("urls") val urls: ApiUrls,
     @SerializedName("links") val links: ApiLinks,
     @SerializedName("likes") val likes: Int,

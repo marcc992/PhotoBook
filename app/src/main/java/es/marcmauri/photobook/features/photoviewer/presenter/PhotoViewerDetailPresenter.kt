@@ -4,10 +4,12 @@ import android.util.Log
 import androidx.annotation.Nullable
 import es.marcmauri.photobook.features.photoviewer.PhotoViewerDetailMVP
 import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
+import kotlinx.coroutines.*
 
 private const val TAG = "D_PhotoDetailPresenter"
 
-class PhotoViewerDetailPresenter : PhotoViewerDetailMVP.Presenter {
+class PhotoViewerDetailPresenter(val model: PhotoViewerDetailMVP.Model) :
+    PhotoViewerDetailMVP.Presenter {
 
     @Nullable
     private var view: PhotoViewerDetailMVP.View? = null
@@ -26,8 +28,31 @@ class PhotoViewerDetailPresenter : PhotoViewerDetailMVP.Presenter {
         view?.setAuthorName(photo.user.name)
         view?.setAuthorInstagram(photo.user.instagram)
         view?.setPhotoDate(photo.createdAt)
-        view?.setAdditionalInfoFirst("Some info from Camera(?)")
-        view?.setAdditionalInfoSecond("Some more info from Camera(?)")
+    }
+
+    override fun getPhotoDetails(photoId: String) {
+        Log.d(TAG, "getPhotoDetails(photoId = $photoId)")
+
+        CoroutineScope(Dispatchers.IO).launch {
+            withContext(Dispatchers.Main) {
+                view?.showLoadingDetails()
+            }
+
+            val camera = model.getCameraDetails(photoId)
+
+            withContext(Dispatchers.Main) {
+                view?.let { v ->
+                    when (camera) {
+                        null -> Log.e(TAG, "An error ocurrs while fetching camera details")
+                        else -> {
+                            v.setCameraBrand(camera.make)
+                            v.setCameraModel(camera.model)
+                        }
+                    }
+                    view?.hideLoadingDetails()
+                }
+            }
+        }
     }
 
     override fun closeButtonClicked() {

@@ -44,10 +44,10 @@ fun ViewGroup.inflate(layoutId: Int) = LayoutInflater.from(context).inflate(layo
 
 fun ImageView.loadByUrl(url: String, centerInside: Boolean? = false) {
     if (centerInside!!) {
-        Picasso.get().load(url).placeholder(R.drawable.ic_launcher_foreground).fit().centerInside()
+        Picasso.get().load(url).placeholder(R.drawable.ic_gallery).fit().centerInside()
             .into(this)
     } else {
-        Picasso.get().load(url).placeholder(R.drawable.ic_launcher_foreground).fit().centerCrop()
+        Picasso.get().load(url).placeholder(R.drawable.ic_loading).fit().centerCrop()
             .into(this)
     }
 }

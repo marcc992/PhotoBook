@@ -53,6 +53,6 @@ class PhotoViewerGridPresenter(val model: PhotoViewerGridMVP.Model) : PhotoViewe
 
     override fun onPhotoItemClick(photo: UnsplashPhoto) {
         Log.d(TAG, "onPhotoItemClick(photo= ${photo.id})")
-        view?.openPhotoInfo(photo)
+        view?.openPhotoDetails(photo)
     }
 }
