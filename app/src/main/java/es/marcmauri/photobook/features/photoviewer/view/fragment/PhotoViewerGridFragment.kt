@@ -75,7 +75,6 @@ class PhotoViewerGridFragment : Fragment(), PhotoViewerGridMVP.View {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         layoutManager.spanCount = Utilities().getGridSpanCount(resources, 680)
-
     }
 
     override fun configureUI() {

@@ -25,7 +25,6 @@ class PhotoGridAdapter(
         ViewHolder(parent.inflate(R.layout.recycler_photo_item))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvPhotoTitle.text = photos[position].description
         holder.ivPhotoPoster.loadByUrl(photos[position].thumbUrl)
         holder.itemView.setOnClickListener {
             listener.onPhotoItemClick(photos[position], position)
@@ -50,11 +49,9 @@ class PhotoGridAdapter(
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvPhotoTitle: TextView
         val ivPhotoPoster: ImageView
 
         init {
-            tvPhotoTitle = itemView.findViewById(R.id.tv_photoTitle)
             ivPhotoPoster = itemView.findViewById(R.id.iv_photoPoster)
         }
     }
