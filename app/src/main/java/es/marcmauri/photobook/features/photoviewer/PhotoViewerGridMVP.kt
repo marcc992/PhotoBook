@@ -10,6 +10,7 @@ interface PhotoViewerGridMVP {
         fun openPhotoInfo(photo: UnsplashPhoto)
         fun showLoading()
         fun hideLoading()
+        fun showNoMorePhotos()
         fun showError(message: String)
     }
 
@@ -21,6 +22,6 @@ interface PhotoViewerGridMVP {
     }
 
     interface Model {
-        suspend fun getPhotosByPage(page: Int): List<UnsplashPhoto>
+        suspend fun getPhotosByPage(page: Int): List<UnsplashPhoto>?
     }
 }

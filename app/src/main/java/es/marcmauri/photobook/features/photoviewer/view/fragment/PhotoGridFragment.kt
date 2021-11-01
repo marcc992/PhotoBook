@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
 import es.marcmauri.photobook.features.photopreview.view.fragment.PhotoPreviewFragment
@@ -45,6 +44,7 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
     var currentPage = 0
 
     private var loading = false
+    private var hasMorePhotos = true
     private var pastVisibleItems = 0
     private var visibleItemCount = 0
     private var totalItemCount = 0
@@ -112,16 +112,10 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
                 totalItemCount = layoutManager.itemCount
                 pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
 
-                if (dy > 0) {
-                    if (!loading && ((totalItemCount - visibleItemCount) <= pastVisibleItems)) {
-
-                        if (true)   // todo: controlar cuando se llega a la ultima pagina
-                            presenter.getPhotos(++currentPage)
-                        else {
-                            snackBar("T: No hay mas fotos para mostrar", binding.rootView)
-                            loading = true // Flag loading as true to avoid this step again
-                        }
-                    }
+                if (!loading && hasMorePhotos
+                    && dy > 0 && ((totalItemCount - visibleItemCount) <= pastVisibleItems)
+                ) {
+                    presenter.getPhotos(++currentPage)
                 }
             }
         })
@@ -155,11 +149,18 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
         loading = false
     }
 
+    override fun showNoMorePhotos() {
+        hasMorePhotos = false
+        snackBar(
+            message = "T: No se han encontrado (mas) fotos",
+            view = binding.rootView
+        );
+    }
+
     override fun showError(message: String) {
-        // Todo: Hacer esto mas bonito
+        --currentPage
         snackBar(
             message = message,
-            duration = Snackbar.LENGTH_INDEFINITE,
             view = binding.rootView
         );
     }
