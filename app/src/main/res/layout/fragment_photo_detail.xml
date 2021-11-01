@@ -43,7 +43,7 @@
                 android:id="@+id/iv_user_photo"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="@color/white"
+                android:background="@android:color/white"
                 android:contentDescription="@string/fragment_photoviewer_detail_content_description_photo"
                 android:padding="4dp" />
 
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nombre del usuario"
                     android:textAppearance="?android:textAppearanceLargeInverse"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/primaryTextColor" />
 
                 <TextView
                     android:id="@+id/tv_user_instagram"
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:text="\@Instagram"
                     android:textAppearance="?android:textAppearanceInverse"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/primaryTextColor" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -81,7 +81,7 @@
             android:layout_marginTop="16dp"
             android:text="Informacion camara"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
             app:layout_constraintTop_toBottomOf="@+id/linear_layout_user_info" />
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:text="fecha de la foto"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
             app:layout_constraintTop_toBottomOf="@+id/tv_camera_details_title" />
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:text="info extra"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
             app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_date" />
@@ -112,9 +112,9 @@
             android:id="@+id/tv_photo_detail_info_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="info extra"
+            android:text="info primaryTextColor"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
             app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_info_first" />
