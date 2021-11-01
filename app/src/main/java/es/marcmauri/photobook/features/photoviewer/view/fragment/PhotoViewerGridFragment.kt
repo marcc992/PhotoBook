@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import es.marcmauri.photobook.R
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
 import es.marcmauri.photobook.features.photopreview.view.fragment.PhotoPreviewFragment
@@ -158,15 +159,15 @@ class PhotoViewerGridFragment : Fragment(), PhotoViewerGridMVP.View {
     override fun showNoMorePhotos() {
         hasMorePhotos = false
         snackBar(
-            message = "T: No se han encontrado (mas) fotos",
+            message = getString(R.string.text_error_no_more_photos),
             view = binding.rootView
         );
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String?) {
         --currentPage
         snackBar(
-            message = message,
+            message = message ?: getString(R.string.text_error_generic),
             view = binding.rootView
         );
     }

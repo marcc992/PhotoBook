@@ -11,7 +11,7 @@ interface PhotoViewerGridMVP {
         fun showLoading()
         fun hideLoading()
         fun showNoMorePhotos()
-        fun showError(message: String)
+        fun showError(message: String?)
     }
 
     interface Presenter {

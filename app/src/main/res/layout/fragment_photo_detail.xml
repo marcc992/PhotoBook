@@ -11,7 +11,7 @@
         android:id="@+id/iv_photo_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:contentDescription="@string/fragment_photoviewer_detail_content_description_photo"
+        android:contentDescription="@string/content_description_fragment_photoviewer_detail_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:background="@android:color/white"
-                android:contentDescription="@string/fragment_photoviewer_detail_content_description_photo"
+                android:contentDescription="@string/content_description_fragment_photoviewer_detail_photo"
                 android:padding="4dp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -58,7 +58,6 @@
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre del usuario"
                     android:textAppearance="?android:textAppearanceLargeInverse"
                     android:textColor="@color/primaryTextColor" />
 
@@ -66,7 +65,6 @@
                     android:id="@+id/tv_user_instagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="\@Instagram"
                     android:textAppearance="?android:textAppearanceInverse"
                     android:textColor="@color/primaryTextColor" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -79,7 +77,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Informacion camara"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
@@ -90,7 +87,6 @@
             android:id="@+id/tv_photo_detail_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="fecha de la foto"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
@@ -101,7 +97,6 @@
             android:id="@+id/tv_photo_detail_info_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="info extra"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
@@ -112,7 +107,6 @@
             android:id="@+id/tv_photo_detail_info_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="info primaryTextColor"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
@@ -127,7 +121,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:contentDescription="@string/fragment_photoviewer_detail_content_description_close"
+        android:contentDescription="@string/content_description_fragment_photoviewer_detail_close"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
