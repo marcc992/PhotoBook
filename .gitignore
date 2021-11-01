@@ -100,3 +100,7 @@ lint/tmp/
 /build
 /captures
 .cxx
+
+.idea/misc.xml
+
+app/src/main/res/values/api_codes.xml
