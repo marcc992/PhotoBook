@@ -4,7 +4,10 @@ import android.util.Log
 import androidx.annotation.Nullable
 import es.marcmauri.photobook.features.photoviewer.PhotoViewerGridMVP
 import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val TAG = "D_PhotoGridPresenter"
 
@@ -32,7 +35,6 @@ class PhotoViewerGridPresenter(val model: PhotoViewerGridMVP.Model) : PhotoViewe
                 view?.showLoading()
             }
 
-            delay(1000)
             val newPhotos = model.getPhotosByPage(page)
 
             withContext(Dispatchers.Main) {

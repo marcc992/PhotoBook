@@ -19,6 +19,7 @@ import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
 import es.marcmauri.photobook.features.photoviewer.view.activity.PhotoGridActivity
 import es.marcmauri.photobook.features.photoviewer.view.adapter.PhotoGridAdapter
 import es.marcmauri.photobook.features.photoviewer.view.listeners.RecyclerPhotoGridListener
+import es.marcmauri.photobook.http.unsplash.UnsplashAPI
 import es.marcmauri.photobook.utils.Utilities
 import es.marcmauri.photobook.utils.snackBar
 import javax.inject.Inject
@@ -30,6 +31,9 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
     @Inject
     lateinit var presenter: PhotoViewerGridMVP.Presenter
 
+    @Inject
+    lateinit var unsplashApi: UnsplashAPI
+
     private lateinit var binding: FragmentPhotoGridBinding
     private lateinit var adapter: PhotoGridAdapter
     private var photoList: ArrayList<UnsplashPhoto> = ArrayList(0)
@@ -38,7 +42,6 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
     }
     private var photoPreviewFragment: PhotoPreviewFragment? = null
 
-    var totalPages = 1 // todo: actualizar este parametro si existe en api
     var currentPage = 0
 
     private var loading = false
@@ -72,7 +75,7 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
         Log.d(TAG, "configureUI()")
         setAdapter()
         setRecylcerView()
-        presenter.getPhotos(0)
+        presenter.getPhotos(++currentPage)  // API pagination starts on page 1
     }
 
     private fun setAdapter() {
@@ -112,8 +115,8 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
                 if (dy > 0) {
                     if (!loading && ((totalItemCount - visibleItemCount) <= pastVisibleItems)) {
 
-                        if (++currentPage <= totalPages)
-                            presenter.getPhotos(currentPage)
+                        if (true)   // todo: controlar cuando se llega a la ultima pagina
+                            presenter.getPhotos(++currentPage)
                         else {
                             snackBar("T: No hay mas fotos para mostrar", binding.rootView)
                             loading = true // Flag loading as true to avoid this step again

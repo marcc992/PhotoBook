@@ -6,7 +6,9 @@ import es.marcmauri.photobook.features.photoviewer.model.PhotoViewerGridModel
 import es.marcmauri.photobook.features.photoviewer.presenter.PhotoViewerDetailPresenter
 import es.marcmauri.photobook.features.photoviewer.presenter.PhotoViewerGridPresenter
 import es.marcmauri.photobook.features.photoviewer.repository.UnsplashRepository
-import es.marcmauri.photobook.features.photoviewer.repository.impl.DummyUnsplashRepository
+import es.marcmauri.photobook.features.photoviewer.repository.impl.LiveUnsplashRepository
+import es.marcmauri.photobook.http.unsplash.UnsplashAPI
+import javax.inject.Singleton
 
 @Module
 class PhotoViewerModule {
@@ -19,9 +21,12 @@ class PhotoViewerModule {
     fun providePhotoViewerGridModel(repository: UnsplashRepository): PhotoViewerGridMVP.Model =
         PhotoViewerGridModel(repository)
 
+    @Singleton
     @Provides
-    fun provideUnsplashRepository(): UnsplashRepository = DummyUnsplashRepository()
+    fun provideUnsplashRepository(unsplashApi: UnsplashAPI): UnsplashRepository =
+        LiveUnsplashRepository(unsplashApi)
 
     @Provides
-    fun providePhotoViewerDetailPresenter(): PhotoViewerDetailMVP.Presenter = PhotoViewerDetailPresenter()
+    fun providePhotoViewerDetailPresenter(): PhotoViewerDetailMVP.Presenter =
+        PhotoViewerDetailPresenter()
 }

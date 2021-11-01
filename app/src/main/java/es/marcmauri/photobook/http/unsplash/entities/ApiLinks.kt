@@ -2,7 +2,7 @@ package es.marcmauri.photobook.http.unsplash.entities
 
 import com.google.gson.annotations.SerializedName
 
-data class Links(
+data class ApiLinks(
     @SerializedName("self") val self: String,
     @SerializedName("html") val html: String,
     @SerializedName("photos") val photos: String,

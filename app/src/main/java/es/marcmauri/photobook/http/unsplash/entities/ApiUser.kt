@@ -2,7 +2,7 @@ package es.marcmauri.photobook.http.unsplash.entities
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class ApiUser(
     @SerializedName("id") val id: String,
     @SerializedName("updated_at") val updated_at: String,
     @SerializedName("username") val username: String,
@@ -13,13 +13,13 @@ data class User(
     @SerializedName("portfolio_url") val portfolio_url: String,
     @SerializedName("bio") val bio: String,
     @SerializedName("location") val location: String,
-    @SerializedName("links") val links: Links,
-    @SerializedName("profile_image") val profile_image: ProfileImage,
+    @SerializedName("links") val links: ApiLinks,
+    @SerializedName("profile_image") val profile_image: ApiProfileImage,
     @SerializedName("instagram_username") val instagram_username: String,
     @SerializedName("total_collections") val total_collections: Int,
     @SerializedName("total_likes") val total_likes: Int,
     @SerializedName("total_photos") val total_photos: Int,
     @SerializedName("accepted_tos") val accepted_tos: Boolean,
     @SerializedName("for_hire") val for_hire: Boolean,
-    @SerializedName("social") val social: Social
+    @SerializedName("social") val social: ApiSocial
 )
