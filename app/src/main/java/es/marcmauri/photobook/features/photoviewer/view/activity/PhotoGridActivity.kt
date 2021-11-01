@@ -36,6 +36,7 @@ class PhotoGridActivity : AppCompatActivity() {
                 transaction
                     .add(R.id.fragment_container, fragment)
             } else {
+                supportActionBar?.hide()
                 transaction
                     .addToBackStack(null)
                     .hide(photoGridFragment)
@@ -44,5 +45,10 @@ class PhotoGridActivity : AppCompatActivity() {
             transaction.setTransition(TRANSIT_FRAGMENT_OPEN)
             transaction.commit()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportActionBar?.show()
     }
 }

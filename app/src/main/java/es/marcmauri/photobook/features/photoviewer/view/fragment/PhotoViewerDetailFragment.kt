@@ -18,6 +18,10 @@ import es.marcmauri.photobook.utils.snackBar
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import androidx.appcompat.app.AppCompatActivity
+
+
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,6 +90,8 @@ class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
 
     override fun configureUI() {
         Log.d(TAG, "configureUI()")
+        (activity as AppCompatActivity?)?.supportActionBar?.hide()
+
         binding.ivCloseDetail.setOnClickListener {
             presenter.closeButtonClicked()
         }
@@ -93,7 +99,7 @@ class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
 
     override fun setImage(url: String) {
         Log.d(TAG, "setImage(url = $url)")
-        binding.ivPhotoDetail.loadByUrl(url)
+        binding.ivPhotoDetail.loadByUrl(url, true)
     }
 
     override fun setAuthorImage(url: String?) {

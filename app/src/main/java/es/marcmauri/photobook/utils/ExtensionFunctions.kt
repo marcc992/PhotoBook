@@ -42,8 +42,15 @@ fun Fragment.snackBar(
 
 fun ViewGroup.inflate(layoutId: Int) = LayoutInflater.from(context).inflate(layoutId, this, false)!!
 
-fun ImageView.loadByUrl(url: String) =
-    Picasso.get().load(url).placeholder(R.drawable.ic_launcher_foreground).fit().centerCrop()
-        .into(this)
+fun ImageView.loadByUrl(url: String, centerInside: Boolean? = false) {
+    if (centerInside!!) {
+        Picasso.get().load(url).placeholder(R.drawable.ic_launcher_foreground).fit().centerInside()
+            .into(this)
+    } else {
+        Picasso.get().load(url).placeholder(R.drawable.ic_launcher_foreground).fit().centerCrop()
+            .into(this)
+    }
+}
+
 
 fun ImageView.loadByResource(resource: Int) = Picasso.get().load(resource).into(this)
