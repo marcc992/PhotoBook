@@ -1,6 +1,7 @@
 package es.marcmauri.photobook.features.photoviewer.view.fragment
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -69,6 +70,12 @@ class PhotoViewerGridFragment : Fragment(), PhotoViewerGridMVP.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.setView(this)
         presenter.onFragmentReady()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        layoutManager.spanCount = Utilities().getGridSpanCount(resources, 680)
+
     }
 
     override fun configureUI() {
