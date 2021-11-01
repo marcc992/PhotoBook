@@ -102,3 +102,5 @@ lint/tmp/
 .cxx
 
 .idea/misc.xml
+
+app/src/main/res/values/api_codes.xml

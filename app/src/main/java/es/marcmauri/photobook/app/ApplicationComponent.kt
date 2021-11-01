@@ -1,17 +1,19 @@
 package es.marcmauri.photobook.app
 
 import dagger.Component
-import es.marcmauri.photobook.features.photogrid.PhotoGridModule
-import es.marcmauri.photobook.features.photogrid.view.activity.PhotoGridActivity
-import es.marcmauri.photobook.features.photogrid.view.fragment.PhotoDetailFragment
-import es.marcmauri.photobook.features.photogrid.view.fragment.PhotoGridFragment
+import es.marcmauri.photobook.features.photoviewer.PhotoViewerModule
+import es.marcmauri.photobook.features.photoviewer.view.activity.PhotoGridActivity
+import es.marcmauri.photobook.features.photoviewer.view.fragment.PhotoDetailFragment
+import es.marcmauri.photobook.features.photoviewer.view.fragment.PhotoGridFragment
+import es.marcmauri.photobook.http.unsplash.UnsplashModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
         ApplicationModule::class,
-        PhotoGridModule::class
+        PhotoViewerModule::class,
+        UnsplashModule::class
     ]
 )
 interface ApplicationComponent {

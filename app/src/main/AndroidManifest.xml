@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PhotoBook">
         <activity
-            android:name=".features.photogrid.view.activity.PhotoGridActivity"
+            android:name=".features.photoviewer.view.activity.PhotoGridActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
