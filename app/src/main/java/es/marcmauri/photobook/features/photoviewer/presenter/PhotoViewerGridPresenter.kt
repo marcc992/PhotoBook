@@ -40,7 +40,7 @@ class PhotoViewerGridPresenter(val model: PhotoViewerGridMVP.Model) : PhotoViewe
             withContext(Dispatchers.Main) {
                 view?.let { v ->
                     when {
-                        newPhotos == null -> v.showError("T: Se ha producido un error inesperado")
+                        newPhotos == null -> v.showError(null)
                         newPhotos.isEmpty() -> v.showNoMorePhotos()
                         else -> v.addPhotos(newPhotos)
                     }

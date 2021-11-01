@@ -1,7 +1,14 @@
 <resources>
-    <string name="app_name">PhotoBook</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="app_name" translatable="false">PhotoBook</string>
+
+    <string name="text_error_generic">An unexpected error occurs</string>
+    <string name="text_error_no_more_photos">There are no more photos to show</string>
+
+    <string name="fragment_photoviewer_detail_camera_info">Camera details</string>
+    <string name="fragment_photoviewer_detail_photo_date">Date: %1$s</string>
+
+    <string name="content_description_fragment_photoviewer_detail_close">Close the detail screen</string>
+    <string name="content_description_fragment_photoviewer_detail_photo">An image</string>
+    <string name="content_description_fragment_photoviewer_grid__poster">An image within a grid</string>
+    <string name="content_description_fragment_photopreview_photo">An image preview</string>
 </resources>

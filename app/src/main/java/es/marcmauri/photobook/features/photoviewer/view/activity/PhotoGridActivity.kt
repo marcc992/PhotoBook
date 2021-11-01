@@ -8,14 +8,14 @@ import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import es.marcmauri.photobook.R
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.ActivityPhotoGridBinding
-import es.marcmauri.photobook.features.photoviewer.view.fragment.PhotoGridFragment
+import es.marcmauri.photobook.features.photoviewer.view.fragment.PhotoViewerGridFragment
 
 private const val TAG = "D_PhotoGridActivity"
 
 class PhotoGridActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPhotoGridBinding
-    private val photoGridFragment by lazy { PhotoGridFragment() }
+    private val photoGridFragment by lazy { PhotoViewerGridFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +32,11 @@ class PhotoGridActivity : AppCompatActivity() {
         if (!fragment.isAdded) {
             val transaction = supportFragmentManager.beginTransaction()
 
-            if (fragment is PhotoGridFragment) {
+            if (fragment is PhotoViewerGridFragment) {
                 transaction
                     .add(R.id.fragment_container, fragment)
             } else {
+                supportActionBar?.hide()
                 transaction
                     .addToBackStack(null)
                     .hide(photoGridFragment)
@@ -44,5 +45,10 @@ class PhotoGridActivity : AppCompatActivity() {
             transaction.setTransition(TRANSIT_FRAGMENT_OPEN)
             transaction.commit()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportActionBar?.show()
     }
 }

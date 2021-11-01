@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="text_error_generic">An unexpected error occurs</string>
+    <string name="text_error_no_more_photos">There are no more photos to show</string>
+
+    <string name="fragment_photoviewer_detail_camera_info">Detalles de la cámara</string>
+    <string name="fragment_photoviewer_detail_photo_date">Fecha: %1$s</string>
+
+    <string name="content_description_fragment_photoviewer_detail_close">Cierra la ventana de detalle</string>
+    <string name="content_description_fragment_photoviewer_detail_photo">Una imagen</string>
+    <string name="content_description_fragment_photoviewer_grid__poster">Una imagen en la cuadrícula</string>
+    <string name="content_description_fragment_photopreview_photo">Una vista previa de una imagen</string>
+</resources>

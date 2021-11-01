@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+private const val TAG = "D_PhotoViewerGridModel"
+
 class PhotoViewerGridModel(val repository: UnsplashRepository) : PhotoViewerGridMVP.Model {
 
     override suspend fun getPhotosByPage(page: Int): List<UnsplashPhoto>? {
@@ -31,7 +33,7 @@ class PhotoViewerGridModel(val repository: UnsplashRepository) : PhotoViewerGrid
                 )
             }
         } catch (e: Exception) {
-            Log.e("D_ERROR_MODEL", "Se ha capturado el fallo del repo")
+            Log.e(TAG, "Something was wrong calling Unsplash API: $e")
             null
         }
     }

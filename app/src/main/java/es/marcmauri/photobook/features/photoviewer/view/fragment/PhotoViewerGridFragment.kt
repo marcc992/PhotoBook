@@ -1,6 +1,7 @@
 package es.marcmauri.photobook.features.photoviewer.view.fragment
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import es.marcmauri.photobook.R
 import es.marcmauri.photobook.app.PhotoBookApp
 import es.marcmauri.photobook.databinding.FragmentPhotoGridBinding
 import es.marcmauri.photobook.features.photopreview.view.fragment.PhotoPreviewFragment
@@ -25,7 +27,7 @@ import javax.inject.Inject
 
 private const val TAG = "D_PhotoGridFragment"
 
-class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
+class PhotoViewerGridFragment : Fragment(), PhotoViewerGridMVP.View {
 
     @Inject
     lateinit var presenter: PhotoViewerGridMVP.Presenter
@@ -69,6 +71,11 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
         super.onViewCreated(view, savedInstanceState)
         presenter.setView(this)
         presenter.onFragmentReady()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        layoutManager.spanCount = Utilities().getGridSpanCount(resources, 680)
     }
 
     override fun configureUI() {
@@ -134,7 +141,7 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
 
     override fun openPhotoInfo(photo: UnsplashPhoto) {
         Log.d(TAG, "openPhotoInfo(photo = ${photo.id})")
-        (activity as PhotoGridActivity).loadFragment(PhotoDetailFragment.newInstance(photo))
+        (activity as PhotoGridActivity).loadFragment(PhotoViewerDetailFragment.newInstance(photo))
     }
 
     override fun showLoading() {
@@ -152,15 +159,15 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
     override fun showNoMorePhotos() {
         hasMorePhotos = false
         snackBar(
-            message = "T: No se han encontrado (mas) fotos",
+            message = getString(R.string.text_error_no_more_photos),
             view = binding.rootView
         );
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String?) {
         --currentPage
         snackBar(
-            message = message,
+            message = message ?: getString(R.string.text_error_generic),
             view = binding.rootView
         );
     }

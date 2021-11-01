@@ -21,7 +21,7 @@ class UnsplashModule {
         val chainInterceptor = Interceptor { chain ->
             var request = chain.request()
             request = request.newBuilder()
-                .addHeader("Authorization", "Client-ID _YOUR_GITHUB_ACCESS_TOKEN_HERE_")
+                .addHeader("Authorization", "Client-ID 0nO1lQ1fFSQhTIujxU3w1X1szwus_a62i63E9w3luxU")
                 .build()
             chain.proceed(request)
         }
