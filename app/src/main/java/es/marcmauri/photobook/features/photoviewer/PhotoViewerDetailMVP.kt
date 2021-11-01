@@ -1,21 +1,23 @@
 package es.marcmauri.photobook.features.photoviewer
 
 import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
+import java.util.*
 
 interface PhotoViewerDetailMVP {
 
     interface View {
         fun configureUI()
         fun setImage(url: String)
-        fun setTitle(title: String)
-        fun setAuthor(author: String)
-        fun setDate(date: String)
+        fun setAuthorImage(url: String?)
+        fun setAuthorName(name: String)
+        fun setAuthorInstagram(instagram: String?)
+        fun setPhotoDate(date: Date)
         fun setAdditionalInfoFirst(text: String)
         fun setAdditionalInfoSecond(text: String)
         fun closeFragment()
         fun showLoading()
         fun hideLoading()
-        fun showError()
+        fun showError(message: String)
     }
 
     interface Presenter {

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fragment_photoviewer_detail_camera_info">Detalles de la cámara</string>
+    <string name="fragment_photoviewer_detail_photo_date">Fecha: %1$s</string>
+    <string name="fragment_photoviewer_detail_content_description_close">Cierra la ventana de detalle</string>
+    <string name="fragment_photoviewer_detail_content_description_photo">An image</string>
+</resources>

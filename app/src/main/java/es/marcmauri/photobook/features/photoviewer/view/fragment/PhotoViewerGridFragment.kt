@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 private const val TAG = "D_PhotoGridFragment"
 
-class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
+class PhotoViewerGridFragment : Fragment(), PhotoViewerGridMVP.View {
 
     @Inject
     lateinit var presenter: PhotoViewerGridMVP.Presenter
@@ -134,7 +134,7 @@ class PhotoGridFragment : Fragment(), PhotoViewerGridMVP.View {
 
     override fun openPhotoInfo(photo: UnsplashPhoto) {
         Log.d(TAG, "openPhotoInfo(photo = ${photo.id})")
-        (activity as PhotoGridActivity).loadFragment(PhotoDetailFragment.newInstance(photo))
+        (activity as PhotoGridActivity).loadFragment(PhotoViewerDetailFragment.newInstance(photo))
     }
 
     override fun showLoading() {

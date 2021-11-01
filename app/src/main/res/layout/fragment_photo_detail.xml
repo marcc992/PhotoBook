@@ -2,14 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.photoviewer.view.fragment.PhotoDetailFragment">
+    tools:context=".features.photoviewer.view.fragment.PhotoViewerDetailFragment">
 
     <ImageView
         android:id="@+id/iv_photo_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:contentDescription="@string/fragment_photoviewer_detail_content_description_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,42 +22,88 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#AA000000"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/tv_photo_detail_title"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_user_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
-            app:layout_constraintTop_toTopOf="@+id/view_photo_detail_background" />
+            app:layout_constraintTop_toTopOf="@+id/view_photo_detail_background">
+
+            <ImageView
+                android:id="@+id/iv_user_photo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@color/white"
+                android:contentDescription="@string/fragment_photoviewer_detail_content_description_photo"
+                android:padding="4dp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre del usuario"
+                    android:textAppearance="?android:textAppearanceLargeInverse"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tv_user_instagram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\@Instagram"
+                    android:textAppearance="?android:textAppearanceInverse"
+                    android:textColor="@color/white" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         <TextView
-            android:id="@+id/tv_photo_detail_author"
+            android:id="@+id/tv_camera_details_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
+            android:layout_marginTop="16dp"
+            android:text="Informacion camara"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
-            app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_title" />
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_user_info" />
 
         <TextView
             android:id="@+id/tv_photo_detail_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
+            android:text="fecha de la foto"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
-            app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_author" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_camera_details_title" />
 
         <TextView
             android:id="@+id/tv_photo_detail_info_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
+            android:text="info extra"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
             app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_date" />
@@ -64,7 +112,9 @@
             android:id="@+id/tv_photo_detail_info_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
+            android:text="info extra"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
             app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_info_first" />
@@ -77,6 +127,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/fragment_photoviewer_detail_content_description_close"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -22,10 +22,12 @@ class PhotoViewerDetailPresenter : PhotoViewerDetailMVP.Presenter {
         Log.d(TAG, "onFragmentReady(photo = $photo)")
         view?.configureUI()
         view?.setImage(photo.regularUrl)
-        photo.description?.let { view?.setTitle(it) }
-        view?.setAuthor(photo.user.name)
-        view?.setAdditionalInfoFirst("@${photo.user.instagram}")
-        view?.setAdditionalInfoSecond("Profile image: ${photo.user.profileImageUrl}")
+        view?.setAuthorImage(photo.user.profileImageUrl)
+        view?.setAuthorName(photo.user.name)
+        view?.setAuthorInstagram(photo.user.instagram)
+        view?.setPhotoDate(photo.createdAt)
+        view?.setAdditionalInfoFirst("Some info from Camera(?)")
+        view?.setAdditionalInfoSecond("Some more info from Camera(?)")
     }
 
     override fun closeButtonClicked() {
