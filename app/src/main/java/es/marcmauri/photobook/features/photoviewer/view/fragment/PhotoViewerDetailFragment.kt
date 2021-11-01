@@ -132,19 +132,26 @@ class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
         binding.tvPhotoDetailDate.text = textDate
     }
 
-    override fun setCameraMake(make: String) {
-        //TODO
-        binding.tvPhotoDetailInfoFirst.text = make
+    override fun setCameraBrand(brand: String?) {
+        if (brand.isNullOrEmpty()) {
+            binding.tvPhotoDetailCameraBrand.visibility = View.GONE
+        } else {
+            val textBrand =
+                resources.getString(R.string.fragment_photoviewer_detail_camera_brand, brand)
+            binding.tvPhotoDetailCameraBrand.text = textBrand
+            binding.tvPhotoDetailCameraBrand.visibility = View.VISIBLE
+        }
     }
 
-    override fun setCameraModel(model: String) {
-        // TODO
-        binding.tvPhotoDetailInfoSecond.text = model
-    }
-
-    override fun setCameraName(name: String) {
-        // todo
-        showError("Aqui va el nombre: $name")
+    override fun setCameraModel(model: String?) {
+        if (model.isNullOrEmpty()) {
+            binding.tvPhotoDetailCameraModel.visibility = View.GONE
+        } else {
+            val textModel =
+                resources.getString(R.string.fragment_photoviewer_detail_camera_model, model)
+            binding.tvPhotoDetailCameraModel.text = textModel
+            binding.tvPhotoDetailCameraModel.visibility = View.VISIBLE
+        }
     }
 
     override fun closeFragment() {
@@ -152,14 +159,12 @@ class PhotoViewerDetailFragment : Fragment(), PhotoViewerDetailMVP.View {
         activity?.onBackPressed()
     }
 
-    override fun showLoading() {
-        Log.d(TAG, "showLoading()")
-        binding.progressLoadingPhotoDetail.visibility = View.VISIBLE
+    override fun showLoadingDetails() {
+        binding.progressBarLoadingCameraDetails.visibility = View.VISIBLE
     }
 
-    override fun hideLoading() {
-        Log.d(TAG, "hideLoading()")
-        binding.progressLoadingPhotoDetail.visibility = View.GONE
+    override fun hideLoadingDetails() {
+        binding.progressBarLoadingCameraDetails.visibility = View.GONE
     }
 
     override fun showError(message: String) {

@@ -13,12 +13,11 @@ interface PhotoViewerDetailMVP {
         fun setAuthorName(name: String)
         fun setAuthorInstagram(instagram: String?)
         fun setPhotoDate(date: Date)
-        fun setCameraMake(make: String)
-        fun setCameraModel(model: String)
-        fun setCameraName(name: String)
+        fun setCameraBrand(brand: String?)
+        fun setCameraModel(model: String?)
         fun closeFragment()
-        fun showLoading()
-        fun hideLoading()
+        fun showLoadingDetails();
+        fun hideLoadingDetails();
         fun showError(message: String)
     }
 

@@ -21,7 +21,7 @@
         android:id="@+id/view_photo_detail_background"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#AA000000"
+        android:background="#CC000000"
         android:paddingStart="16dp"
         android:paddingTop="10dp"
         android:paddingEnd="16dp"
@@ -73,15 +73,26 @@
 
 
         <TextView
-            android:id="@+id/tv_camera_details_title"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_photo_detail_camera_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/fragment_photoviewer_detail_camera_info"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
             app:layout_constraintTop_toBottomOf="@+id/linear_layout_user_info" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_loading_camera_details"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/tv_photo_detail_camera_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_photo_detail_camera_title"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_photo_detail_camera_title" />
 
         <TextView
             android:id="@+id/tv_photo_detail_date"
@@ -91,27 +102,29 @@
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
-            app:layout_constraintTop_toBottomOf="@+id/tv_camera_details_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_camera_title" />
 
         <TextView
-            android:id="@+id/tv_photo_detail_info_first"
+            android:id="@+id/tv_photo_detail_camera_brand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
             android:textColor="@color/primaryTextColor"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
             app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_date" />
 
         <TextView
-            android:id="@+id/tv_photo_detail_info_second"
+            android:id="@+id/tv_photo_detail_camera_model"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
             android:textColor="@color/primaryTextColor"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/view_photo_detail_background"
             app:layout_constraintStart_toStartOf="@+id/view_photo_detail_background"
-            app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_info_first" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_photo_detail_camera_brand" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -124,17 +137,6 @@
         android:contentDescription="@string/content_description_fragment_photoviewer_detail_close"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/progress_loading_photo_detail"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

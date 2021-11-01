@@ -6,6 +6,9 @@
 
     <string name="fragment_photoviewer_detail_camera_info">Camera details</string>
     <string name="fragment_photoviewer_detail_photo_date">Date: %1$s</string>
+    <string name="fragment_photoviewer_detail_camera_brand">Brand: %1$s</string>
+    <string name="fragment_photoviewer_detail_camera_model">Model: %1$s</string>
+    <string name="fragment_photoviewer_detail_camera_name">Name: %1$s</string>
 
     <string name="content_description_fragment_photoviewer_detail_close">Close the detail screen</string>
     <string name="content_description_fragment_photoviewer_detail_photo">An image</string>

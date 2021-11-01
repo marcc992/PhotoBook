@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.annotation.Nullable
 import es.marcmauri.photobook.features.photoviewer.PhotoViewerDetailMVP
 import es.marcmauri.photobook.features.photoviewer.model.entities.UnsplashPhoto
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 private const val TAG = "D_PhotoDetailPresenter"
 
@@ -38,22 +35,21 @@ class PhotoViewerDetailPresenter(val model: PhotoViewerDetailMVP.Model) :
 
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
-                // Todo: loadings en los campos?
+                view?.showLoadingDetails()
             }
 
             val camera = model.getCameraDetails(photoId)
 
             withContext(Dispatchers.Main) {
                 view?.let { v ->
-                    // Todo: remove loadings en los campos?
                     when (camera) {
                         null -> Log.e(TAG, "An error ocurrs while fetching camera details")
                         else -> {
-                            v.setCameraMake("Modelo (mock): ${camera.make}")
-                            v.setCameraModel("Marca (Mock): ${camera.model}")
-                            v.setCameraModel("Name (Mock): ${camera.name}")
+                            v.setCameraBrand(camera.make)
+                            v.setCameraModel(camera.model)
                         }
                     }
+                    view?.hideLoadingDetails()
                 }
             }
         }
